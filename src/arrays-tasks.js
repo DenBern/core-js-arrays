@@ -20,9 +20,8 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
-}
+const getIntervalArray = (start, end) =>
+  Array.from({ length: end - start + 1 }, (_, index) => start + index);
 
 /**
  * Returns a new array where each element is the sum of the corresponding elements
@@ -37,9 +36,10 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
-}
+const sumArrays = (arr1, arr2) =>
+  arr1.length > arr2.length
+    ? arr1.map((num, index) => num + (arr2[index] ?? 0))
+    : arr2.map((num, index) => num + (arr1[index] ?? 0));
 
 /**
  * Returns an index of the specified element in array or -1 if element is not found.
@@ -53,9 +53,7 @@ function sumArrays(/* arr1, arr2 */) {
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
-}
+const findElement = (arr, value) => arr.indexOf(value);
 
 /**
  * Returns a number of all occurrences of the specified item in an array.
@@ -71,9 +69,8 @@ function findElement(/* arr, value */) {
  *    findAllOccurrences([ null, undefined, null ], null) => 2
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
-}
+const findAllOccurrences = (arr, item) =>
+  arr.filter((num) => num === item).length;
 
 /**
  * Removes falsy values from the specified array.
@@ -87,9 +84,7 @@ function findAllOccurrences(/* arr, item */) {
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
-}
+const removeFalsyValues = (arr) => arr.filter((item) => item);
 
 /**
  * Returns an array containing the lengths of each string in a specified array of strings.
@@ -101,9 +96,7 @@ function removeFalsyValues(/* arr */) {
  *    getStringsLength([ '', 'a', 'bc', 'def', 'ghij' ]) => [ 0, 1, 2, 3, 4 ]
  *    getStringsLength([ 'angular', 'react', 'ember' ]) => [ 7, 5, 5 ]
  */
-function getStringsLength(/* arr */) {
-  throw new Error('Not implemented');
-}
+const getStringsLength = (arr) => arr.map((item) => item.length);
 
 /**
  * Returns the average of all items in the specified array of numbers.
@@ -119,9 +112,9 @@ function getStringsLength(/* arr */) {
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
-}
+const getAverage = (arr) =>
+  +(arr.reduce((acc, value) => acc + value, 0) / arr.length ?? 0).toFixed(2) ||
+  0;
 
 /**
  * Checks if all strings in an array have the same length.
@@ -133,9 +126,8 @@ function getAverage(/* arr */) {
  *    isSameLength(['orange', 'banana', 'cherry']) => true
  *    isSameLength(['cat', 'dog', 'elephant']) => false
  */
-function isSameLength(/* arr */) {
-  throw new Error('Not implemented');
-}
+const isSameLength = (arr) =>
+  arr.every((item) => item.length === arr[0].length);
 
 /**
  * Checks if there are elements in the array where the value is equal to its index.
@@ -148,9 +140,7 @@ function isSameLength(/* arr */) {
  *    isValueEqualsIndex([2, 1, 0, 4, 5]) => true
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
-function isValueEqualsIndex(/* arr */) {
-  throw new Error('Not implemented');
-}
+const isValueEqualsIndex = (arr) => arr.some((item, i) => item === i);
 
 /**
  * Inserts the item into specified array at specified index.
@@ -163,9 +153,7 @@ function isValueEqualsIndex(/* arr */) {
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
  *    insertItem([ 1, 'b', 'c'], 'x', 0) => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
-}
+const insertItem = (arr, item, index) => arr.splice(index, 0, item);
 
 /**
  * Returns the n first items of the specified array.
@@ -178,9 +166,7 @@ function insertItem(/* arr, item, index */) {
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
-}
+const getHead = (arr, n) => arr.splice(0, n);
 
 /**
  * Returns the n last items of the specified array.
@@ -193,9 +179,7 @@ function getHead(/* arr, n */) {
  *    getTail([ 'a', 'b', 'c', 'd'], 3) => [ 'b', 'c', 'd' ]
  *    getTail([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getTail(/* arr, n */) {
-  throw new Error('Not implemented');
-}
+const getTail = (arr, n) => arr.splice(arr.length - n, arr.length);
 
 /**
  * Returns the doubled array - elements of the specified array
@@ -209,9 +193,7 @@ function getTail(/* arr, n */) {
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
-}
+const doubleArray = (arr) => [...arr, ...arr];
 
 /**
  * Concatenates all elements from specified array into single string with ',' delimiter.
@@ -224,9 +206,7 @@ function doubleArray(/* arr */) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
-}
+const toStringList = (arr) => arr.join(',');
 
 /**
  * Returns array containing only unique values from the specified array.
@@ -240,9 +220,7 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
-}
+const distinct = (arr) => [...new Set(arr)];
 
 /**
  * Creates an n-dimensional array and fills it with zeros.
@@ -272,9 +250,7 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
-}
+const flattenArray = (nestedArray) => nestedArray.flat(Infinity);
 
 /**
  * Projects each element of the specified array to a sequence
@@ -289,9 +265,9 @@ function flattenArray(/* nestedArray */) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
+const selectMany = (/* arr, childrenSelector */) => {
   throw new Error('Not implemented');
-}
+};
 
 /**
  * Every month, you record your income and expenses.
@@ -306,9 +282,8 @@ function selectMany(/* arr, childrenSelector */) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
-}
+const calculateBalance = (arr) =>
+  arr.length ? arr[0][0] - arr[0][1] + (arr[1][0] - arr[1][1]) : 0;
 
 /**
  * Breaks an array into chunks of the specified size.
@@ -322,9 +297,9 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
+const createChunks = (/* arr, chunkSize */) => {
   throw new Error('Not implemented');
-}
+};
 
 /**
  * Generates an array of odd numbers of the specified length.
@@ -338,9 +313,8 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
-}
+const generateOdds = (len) =>
+  Array.from({ length: len }).map((_, index) => 1 + index * 2);
 
 /**
  * Returns an element from the multidimensional array by the specified indices.
@@ -354,9 +328,9 @@ function generateOdds(/* len */) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
+const getElementByIndices = (/* arr, indices */) => {
   throw new Error('Not implemented');
-}
+};
 
 /**
  * Returns the number of all falsy values in the specified array.
@@ -370,9 +344,7 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
-}
+const getFalsyValuesCount = (arr) => arr.filter((item) => !item).length;
 
 /**
  * Creates an identity matrix of the specified size.
@@ -407,9 +379,8 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
-}
+const getIndicesOfOddNumbers = (numbers) =>
+  numbers.filter((item) => item % 2 !== 0).map((item) => numbers.indexOf(item));
 
 /**
  * Returns the array of RGB Hex strings from the specified array of numbers.
@@ -421,9 +392,19 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
-}
+const getHexRGBValues = (arr) => {
+  const zerosString = '000000';
+  return arr
+    .map((item) => item.toString(16).toUpperCase())
+    .map((item) => item.split(''))
+    .map(
+      (item) =>
+        `#${
+          zerosString.substr(0, zerosString.length - item.length) +
+          item.join('')
+        }`
+    );
+};
 
 /**
  * Returns the n largest values from the specified array
@@ -439,9 +420,11 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
-}
+const getMaxItems = (arr, n) =>
+  arr
+    .sort((a, b) => a - b)
+    .reverse()
+    .splice(0, n);
 
 /**
  * Finds and returns an array containing only the common elements found in two arrays.
@@ -455,9 +438,8 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
-}
+const findCommonElements = (arr1, arr2) =>
+  arr1.filter((item) => arr2.includes(item));
 
 /**
  * Finds the length of the longest increasing subsequence of a given array of integers.
@@ -470,9 +452,9 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
+const findLongestIncreasingSubsequence = (/* nums */) => {
   throw new Error('Not implemented');
-}
+};
 
 /**
  * Propagates every item in sequence its position times
@@ -488,9 +470,8 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
-}
+const propagateItemsByPositionIndex = (arr) =>
+  arr.map((item, i) => Array.from({ length: i + 1 }, () => item)).flat();
 
 /**
  * Shifts an array by n positions. If n is negative, the array is shifted to the left;
@@ -505,9 +486,15 @@ function propagateItemsByPositionIndex(/* arr */) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
+const shiftArray = (/* arr, n */) => {
   throw new Error('Not implemented');
-}
+};
+
+// TODO Example
+// [
+//   ...arr.splice(n + 1, arr.length - 1),
+//   ...arr.splice(0, n + 1),
+// ];
 
 /**
  * Sorts digit names.
@@ -545,9 +532,23 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
-}
+const swapHeadAndTail = (arr) => {
+  const arrLength = arr.length;
+  let res = [];
+  if (arrLength % 2 === 0) {
+    res = [
+      ...arr.slice(arr.length / 2, arr.length),
+      ...arr.slice(0, arr.length / 2),
+    ];
+  } else {
+    res = [
+      ...arr.slice(Math.floor(arr.length / 2 + 1), arr.length),
+      arr[Math.floor(arrLength / 2)],
+      ...arr.slice(0, arr.length / 2),
+    ];
+  }
+  return res;
+};
 
 module.exports = {
   getIntervalArray,
