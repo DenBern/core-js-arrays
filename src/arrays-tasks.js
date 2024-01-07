@@ -20,8 +20,9 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-const getIntervalArray = (start, end) =>
-  Array.from({ length: end - start + 1 }, (_, index) => start + index);
+const getIntervalArray = (start, end) => {
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+};
 
 /**
  * Returns a new array where each element is the sum of the corresponding elements
@@ -53,7 +54,9 @@ const sumArrays = (arr1, arr2) =>
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-const findElement = (arr, value) => arr.indexOf(value);
+const findElement = (arr, value) => {
+  return arr.indexOf(value);
+};
 
 /**
  * Returns a number of all occurrences of the specified item in an array.
@@ -84,7 +87,9 @@ const findAllOccurrences = (arr, item) =>
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
-const removeFalsyValues = (arr) => arr.filter((item) => item);
+const removeFalsyValues = (arr) => {
+  return arr.filter((item) => item);
+};
 
 /**
  * Returns an array containing the lengths of each string in a specified array of strings.
@@ -96,7 +101,9 @@ const removeFalsyValues = (arr) => arr.filter((item) => item);
  *    getStringsLength([ '', 'a', 'bc', 'def', 'ghij' ]) => [ 0, 1, 2, 3, 4 ]
  *    getStringsLength([ 'angular', 'react', 'ember' ]) => [ 7, 5, 5 ]
  */
-const getStringsLength = (arr) => arr.map((item) => item.length);
+const getStringsLength = (arr) => {
+  return arr.map((item) => item.length);
+};
 
 /**
  * Returns the average of all items in the specified array of numbers.
@@ -112,9 +119,13 @@ const getStringsLength = (arr) => arr.map((item) => item.length);
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
  */
-const getAverage = (arr) =>
-  +(arr.reduce((acc, value) => acc + value, 0) / arr.length ?? 0).toFixed(2) ||
-  0;
+const getAverage = (arr) => {
+  return (
+    +(arr.reduce((acc, value) => acc + value, 0) / arr.length ?? 0).toFixed(
+      2
+    ) || 0
+  );
+};
 
 /**
  * Checks if all strings in an array have the same length.
@@ -126,8 +137,9 @@ const getAverage = (arr) =>
  *    isSameLength(['orange', 'banana', 'cherry']) => true
  *    isSameLength(['cat', 'dog', 'elephant']) => false
  */
-const isSameLength = (arr) =>
-  arr.every((item) => item.length === arr[0].length);
+const isSameLength = (arr) => {
+  return arr.every((item) => item.length === arr[0].length);
+};
 
 /**
  * Checks if there are elements in the array where the value is equal to its index.
@@ -140,7 +152,9 @@ const isSameLength = (arr) =>
  *    isValueEqualsIndex([2, 1, 0, 4, 5]) => true
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
-const isValueEqualsIndex = (arr) => arr.some((item, i) => item === i);
+const isValueEqualsIndex = (arr) => {
+  return arr.some((item, i) => item === i);
+};
 
 /**
  * Inserts the item into specified array at specified index.
@@ -153,7 +167,9 @@ const isValueEqualsIndex = (arr) => arr.some((item, i) => item === i);
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
  *    insertItem([ 1, 'b', 'c'], 'x', 0) => [ 'x', 1, 'b', 'c' ]
  */
-const insertItem = (arr, item, index) => arr.splice(index, 0, item);
+const insertItem = (arr, item, index) => {
+  return arr.splice(index, 0, item);
+};
 
 /**
  * Returns the n first items of the specified array.
@@ -206,7 +222,9 @@ const doubleArray = (arr) => [...arr, ...arr];
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-const toStringList = (arr) => arr.join(',');
+const toStringList = (arr) => {
+  return arr.join(',');
+};
 
 /**
  * Returns array containing only unique values from the specified array.
@@ -220,7 +238,9 @@ const toStringList = (arr) => arr.join(',');
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-const distinct = (arr) => [...new Set(arr)];
+const distinct = (arr) => {
+  return [...new Set(arr)];
+};
 
 /**
  * Creates an n-dimensional array and fills it with zeros.
@@ -235,9 +255,10 @@ const distinct = (arr) => [...new Set(arr)];
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
-}
+const createNDimensionalArray = (n, size) => {
+  if (n === 1) return Array(size).fill(0);
+  return Array(size).fill(createNDimensionalArray(n - 1, size));
+};
 
 /**
  * Flattens a nested array into a single-level array.
@@ -250,7 +271,9 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-const flattenArray = (nestedArray) => nestedArray.flat(Infinity);
+const flattenArray = (nestedArray) => {
+  return nestedArray.flat(Infinity);
+};
 
 /**
  * Projects each element of the specified array to a sequence
@@ -265,9 +288,13 @@ const flattenArray = (nestedArray) => nestedArray.flat(Infinity);
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-const selectMany = (/* arr, childrenSelector */) => {
+function selectMany(/* arr, childrenSelector */) {
   throw new Error('Not implemented');
-};
+  // return arr.reduce(
+  //   (result, current) => result.concat(childrenSelector(current)),
+  //   []
+  // );
+}
 
 /**
  * Every month, you record your income and expenses.
@@ -298,6 +325,12 @@ const calculateBalance = (arr) =>
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
 const createChunks = (/* arr, chunkSize */) => {
+  // return arr.reduce((chunks, item, index) => {
+  //   const chunkIndex = Math.floor(index / chunkSize);
+  //   chunks[chunkIndex] = chunks[chunkIndex] || [];
+  //   chunks[chunkIndex].push(item);
+  //   return chunks;
+  // }, []);
   throw new Error('Not implemented');
 };
 
@@ -328,8 +361,10 @@ const generateOdds = (len) =>
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-const getElementByIndices = (/* arr, indices */) => {
-  throw new Error('Not implemented');
+const getElementByIndices = (arr, indices) => {
+  return indices.reduce((result, index) => {
+    return result[index];
+  }, arr);
 };
 
 /**
@@ -364,9 +399,11 @@ const getFalsyValuesCount = (arr) => arr.filter((item) => !item).length;
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
-}
+const getIdentityMatrix = (n) => {
+  return Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (__, j) => (i === j ? 1 : 0))
+  );
+};
 
 /**
  * Returns an array containing indices of odd elements in the input array.
@@ -454,6 +491,15 @@ const findCommonElements = (arr1, arr2) =>
  */
 const findLongestIncreasingSubsequence = (/* nums */) => {
   throw new Error('Not implemented');
+  // const calculateMax = (num, index) =>
+  //   Math.max(
+  //     ...nums.slice(0, index).map((prevNum, prevIndex) => (num > prevNum ? dp[prevIndex] : 0)),
+  //     1
+  //   );
+
+  // const dp = nums.map(calculateMax);
+
+  // return dp.reduce((max, length) => Math.max(max, length), 0);
 };
 
 /**
@@ -488,6 +534,17 @@ const propagateItemsByPositionIndex = (arr) =>
  */
 const shiftArray = (/* arr, n */) => {
   throw new Error('Not implemented');
+  // if (arr.length === 0 || n === 0) {
+  //   return arr;
+  // }
+
+  // const shiftAmount = n % arr.length;
+
+  // if (shiftAmount < 0) {
+  //   return [...arr.slice(-shiftAmount), ...arr.slice(0, -shiftAmount)];
+  // } else {
+  //   return [...arr.slice(-shiftAmount), ...arr.slice(0, -shiftAmount)]
+  // }
 };
 
 // TODO Example
@@ -510,7 +567,18 @@ const shiftArray = (/* arr, n */) => {
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+  const nums = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
 }
 
 /**
