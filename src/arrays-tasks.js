@@ -579,9 +579,7 @@ const sortDigitNamesByNumericOrder = (arr) => {
     eight: 8,
     nine: 9,
   };
-  const objKeys = Object.keys(nums);
-  const numsArr = arr.map((item) => nums[item]).sort((a, b) => a - b);
-  return numsArr.map((item) => objKeys[item]);
+  return arr.sort((a, b) => nums[a] - nums[b]);
 };
 
 /**
