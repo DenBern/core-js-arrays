@@ -209,7 +209,7 @@ const getTail = (arr, n) => arr.splice(arr.length - n, arr.length);
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-const doubleArray = (arr) => [...arr, ...arr];
+const doubleArray = (arr) => arr.concat(arr);
 
 /**
  * Concatenates all elements from specified array into single string with ',' delimiter.
@@ -485,17 +485,14 @@ const findCommonElements = (arr1, arr2) =>
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-const findLongestIncreasingSubsequence = (/* nums */) => {
-  throw new Error('Not implemented');
-  // const calculateMax = (num, index) =>
-  //   Math.max(
-  //     ...nums.slice(0, index).map((prevNum, prevIndex) => (num > prevNum ? dp[prevIndex] : 0)),
-  //     1
-  //   );
-
-  // const dp = nums.map(calculateMax);
-
-  // return dp.reduce((max, length) => Math.max(max, length), 0);
+const findLongestIncreasingSubsequence = (nums) => {
+  let res = 1;
+  nums.reduce((acc, value, i) => {
+    const currentLength = value > nums[i - 1] ? acc + 1 : 1;
+    res = Math.max(res, currentLength);
+    return currentLength;
+  }, 1);
+  return res;
 };
 
 /**
@@ -528,26 +525,16 @@ const propagateItemsByPositionIndex = (arr) =>
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-const shiftArray = (/* arr, n */) => {
-  throw new Error('Not implemented');
-  // if (arr.length === 0 || n === 0) {
-  //   return arr;
-  // }
-
-  // const shiftAmount = n % arr.length;
-
-  // if (shiftAmount < 0) {
-  //   return [...arr.slice(-shiftAmount), ...arr.slice(0, -shiftAmount)];
-  // } else {
-  //   return [...arr.slice(-shiftAmount), ...arr.slice(0, -shiftAmount)]
-  // }
+const shiftArray = (arr, n) => {
+  if (arr.length === 0 || n === 0) {
+    return arr;
+  }
+  const shiftAmount = n % arr.length;
+  if (shiftAmount < 0) {
+    return [...arr.slice(-shiftAmount), ...arr.slice(0, -shiftAmount)];
+  }
+  return [...arr.slice(-shiftAmount), ...arr.slice(0, -shiftAmount)];
 };
-
-// TODO Example
-// [
-//   ...arr.splice(n + 1, arr.length - 1),
-//   ...arr.splice(0, n + 1),
-// ];
 
 /**
  * Sorts digit names.
