@@ -288,13 +288,8 @@ const flattenArray = (nestedArray) => {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
-  // return arr.reduce(
-  //   (result, current) => result.concat(childrenSelector(current)),
-  //   []
-  // );
-}
+const selectMany = (arr, childrenSelector) =>
+  arr.flatMap((item) => childrenSelector(item));
 
 /**
  * Every month, you record your income and expenses.
@@ -324,14 +319,15 @@ const calculateBalance = (arr) =>
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-const createChunks = (/* arr, chunkSize */) => {
-  // return arr.reduce((chunks, item, index) => {
-  //   const chunkIndex = Math.floor(index / chunkSize);
-  //   chunks[chunkIndex] = chunks[chunkIndex] || [];
-  //   chunks[chunkIndex].push(item);
-  //   return chunks;
-  // }, []);
-  throw new Error('Not implemented');
+const createChunks = (arr, chunkSize) => {
+  return arr
+    .map((_item, i) => {
+      if (i % chunkSize === 0) {
+        return arr.slice(i, chunkSize + i);
+      }
+      return null;
+    })
+    .filter((item) => item);
 };
 
 /**
