@@ -182,7 +182,9 @@ const insertItem = (arr, item, index) => {
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
  */
-const getHead = (arr, n) => arr.splice(0, n);
+function getHead(arr, n) {
+  return arr.slice(0, n);
+}
 
 /**
  * Returns the n last items of the specified array.
@@ -209,7 +211,9 @@ const getTail = (arr, n) => arr.splice(arr.length - n, arr.length);
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-const doubleArray = (arr) => arr.concat(arr);
+function doubleArray(arr) {
+  return arr.concat(arr);
+}
 
 /**
  * Concatenates all elements from specified array into single string with ',' delimiter.
@@ -288,8 +292,9 @@ const flattenArray = (nestedArray) => {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-const selectMany = (arr, childrenSelector) =>
-  arr.flatMap((item) => childrenSelector(item));
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap((item) => childrenSelector(item));
+}
 
 /**
  * Every month, you record your income and expenses.
